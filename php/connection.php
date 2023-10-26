@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$dbname = "libraryinventorysystem";
+$dbname = "db_ba3102";
 $username = "root";
 $password = "";
 
