@@ -24,7 +24,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="./js/librarian.js"></script>
+  <script src="./js/client.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -34,7 +34,7 @@
 
   <div class="row">
     <div class="col">
-      <h3><?= htmlspecialchars($user["fullname"]) ?></h3>
+      <h3><i class="fa fa-user-circle-o fa-2x" aria-hidden="true" style="margin-right:10px;"></i><?= htmlspecialchars($user["fullname"]) ?></h3>
     </div>
     <div class="col d-flex justify-content-end">
       <button id="logoutBtn" type="button" class="btn btn-danger text-nowrap" onclick="location.href='./php/logout.php'">
@@ -48,12 +48,15 @@
 
   <h4>Available Books</h4>
   <div class="container-fluid overflow-y-scroll rounded bg-dark p-4" id="InventoryTbl">
+    <form class="d-flex" role="bookSearch">
+      <input class="form-control me-2" type="text" id="bookSearchInput" placeholder="Search by id, title or description" aria-label="Search" style="margin-bottom: 10px;">
+    </form>
     <?php
         $sql = "SELECT * FROM books WHERE quantity > 0";
         $result = $con->query($sql);
 
         if ($result->num_rows > 0) {
-            echo "<table class='table table-dark table-hover'>";
+            echo "<table class='table table-dark table-hover' id='bookTable'>";
             echo "<tr><th>Book ID</th><th>Title</th><th>Description</th><th>Quantity</th></tr>";
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>";
@@ -75,5 +78,6 @@
     <i class="fa fa-lock"></i> Login
   </button>
 <?php endif; ?>
+
 </body>
 </html>
