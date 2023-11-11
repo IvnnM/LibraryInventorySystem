@@ -149,6 +149,7 @@ function editRole(userID, userEmail) {
     },
     inputPlaceholder: 'Select a new role',
     showCancelButton: true,
+    confirmButtonText: "Save",
     inputValidator: (value) => {
       if (value === '') {
         return 'You need to select a role';
@@ -183,6 +184,74 @@ function updateRole(userID, newRole) {
     }
   };
   xhr.send(`userID=${userID}&newRole=${newRole}`);
+}
+
+
+function addBook() {
+  Swal.fire({
+    title: "Publish Book",
+    html:
+    '<div class="title-container">' +
+      '<br>' +
+      '<h6 class="text-start title">Book details</h6>' +
+    '</div>' +
+    '<div class="input-group mb-3">' +
+      '<span class="input-group-text">ISBN and Title</span>' +
+      '<input id="isbn" type="text" placeholder="International Standard Book Number" aria-label="isbn" class="form-control">' +
+      '<input id="title" type="text" placeholder="Title of the book" aria-label="title" class="form-control">' +
+    '</div>' +
+    '<div class="input-group mb-3">' +
+      '<span class="input-group-text" id="addon-wrapping">Author</span>' +
+      '<input id="author" type="text" class="form-control" placeholder="Who is the author of the book?" aria-label="author" aria-describedby="addon-wrapping">' +
+    '</div>' +
+    '<div class="input-group mb-3">' +
+      '<span class="input-group-text">Genre</span>' +
+      '<input id="genre" type="text" class="form-control" placeholder="Specify the genre of the book" aria-label="genre">' +
+      '<span class="input-group-text">Quantity</span>' +
+      '<input id="quantity" type="number" class="form-control" placeholder="How many copies are available?" aria-label="quantity">' +
+    '</div>' +
+    '<div class="input-group mb-3">' +
+      '<span class="input-group-text">Description</span>' +
+      '<textarea id="description" class="form-control" aria-label="Description"></textarea>' +
+    '</div>',  
+    showCancelButton: true,
+    confirmButtonText: "Publish",
+    customClass: {
+      popup: 'custom-modal-class',
+      confirmButton: 'custom-confirm-button-class',
+      cancelButton: 'custom-cancel-button-class',
+      title: 'left-align-title'
+    },
+    width: '60%',
+    preConfirm: () => {
+      const isbn = Swal.getPopup().querySelector("#isbn").value.trim();
+      const title = Swal.getPopup().querySelector("#title").value.trim();
+      const author = Swal.getPopup().querySelector("#author").value.trim();
+      const genre = Swal.getPopup().querySelector("#genre").value.trim();
+      const description = Swal.getPopup().querySelector("#description").value.trim();
+      const quantity = Swal.getPopup().querySelector("#quantity").value.trim();
+
+      // Validate the inputs
+      if (!isbn || !title || !author || !genre || !description || !quantity) {
+        Swal.showValidationMessage("Please fill in all required fields.");
+        return false;
+      }
+
+      // Send the data to your server to add the book
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', './php/add-book.php', true); // Specify the correct PHP file URL
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          Swal.fire('Book Added!', '', 'success');
+          // You can perform any additional actions here, like updating the book list
+        } else {
+          Swal.fire('Error!', 'Book could not be added.', 'error');
+        }
+      };
+      xhr.send(`title=${title}&author=${author}&genre=${genre}&isbn=${isbn}&description=${description}&quantity=${quantity}`);
+    },
+  });
 }
 
 

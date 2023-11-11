@@ -143,3 +143,30 @@ async function updateInventory(action, bookID, quantity) {
     return { success: false, message: 'An error occurred while updating inventory' };
   }
 }
+
+// Book Search
+document.addEventListener('DOMContentLoaded', function () {
+  const bookSearchInput = document.getElementById('bookSearchInput');
+  const bookTable = document.getElementById('bookTable');
+  let originalBookTableContent = bookTable.innerHTML;
+
+  bookSearchInput.addEventListener('input', performBookSearch);
+
+  function performBookSearch() {
+    const searchValue = bookSearchInput.value.trim();
+
+    if (searchValue !== '') {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', `php/search_books_librarian.php?search=${searchValue}`, true);
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          bookTable.innerHTML = xhr.responseText;
+        }
+      };
+      xhr.send();
+    } else {
+      // Restore the original content
+      bookTable.innerHTML = originalBookTableContent;
+    }
+  }
+});
