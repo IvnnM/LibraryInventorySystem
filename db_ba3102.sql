@@ -105,7 +105,7 @@ CREATE TABLE `users` (
 --   Dumping data for table `users`
 --
 
-INSERT INTO `users` (`fullname`, `email`, `password`, `role`) VALUES
+INSERT INTO      `users` (`fullname`, `email`, `password`, `role`) VALUES
 ('Admin User', 'admin@g', '$2y$10$7WBXttrmFnqyZgP/w3hQCuj1UFGktv.zrkE7vVALTOhiOQa.LSSFq', 'Admin'),
 ('Client User', 'client@g', '$2y$10$7WBXttrmFnqyZgP/w3hQCuj1UFGktv.zrkE7vVALTOhiOQa.LSSFq', 'Client'),
 ('Librarian User', 'librarian@g', '$2y$10$7WBXttrmFnqyZgP/w3hQCuj1UFGktv.zrkE7vVALTOhiOQa.LSSFq', 'Librarian');
