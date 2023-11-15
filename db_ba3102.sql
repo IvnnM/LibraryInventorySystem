@@ -29,31 +29,31 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `books` (
-  `bookID` int                (11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `title` varchar(255) NOT NULL,
-  `author` varchar(255) NOT NULL,
-  `genre` varchar(255) NOT NULL,
-  `ISBN` varchar(50) NOT NULL,
+  `bookID` int (11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `title` varchar (255) NOT NULL,
+  `author` varchar (255) NOT NULL,
+  `genre` varchar (255) NOT NULL,
+  `ISBN` varchar (50) NOT NULL,
   `description` text DEFAULT NULL,
-  `quantity` int(11) NOT NULL,
-  `publication_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `quantity`  int(11) NOT NULL,
+  `publication_date`timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`title`, `author`, `genre`, `ISBN`, `description`, `quantity`, `publication_date`) VALUES
-('Book 1', 'Author 1', 'Genre 1', 'ISBN123456', 'Description of Book 1', 10, '2022-01-15'),
-('Book 2', 'Author 2', 'Genre 2', 'ISBN234567', 'Description of Book 2', 15, '2022-02-20'),
-('Book 3', 'Author 3', 'Genre 3', 'ISBN345678', 'Description of Book 3', 8, '2022-03-25'),
-('Book 4', 'Author 1', 'Genre 4', 'ISBN456789', 'Description of Book 4', 20, '2022-04-10'),
-('Book 5', 'Author 1', 'Genre 1', 'ISBN101112', 'Description of Book 5', 20, '2022-05-05'),
-('Book 6', 'Author 1', 'Genre 1', 'ISBN789012', 'Description of Book 6', 15, '2022-06-15'),
-('Book 7', 'Author 2', 'Genre 2', 'ISBN890123', 'Description of Book 7', 12, '2022-07-20'),
-('Book 8', 'Author 2', 'Genre 2', 'ISBN901234', 'Description of Book 8', 18, '2022-08-25'),
-('Book 9', 'Author 2', 'Genre 2', 'ISBN012345', 'Description of Book 9', 25, '2022-09-10'),
-('Book 10', 'Author 3', 'Genre 3', 'ISBN123456', 'Description of Book 10', 10, '2022-10-05');
+INSERT INTO  `books` (`title`, `author`, `genre`, `ISBN`, `description`, `quantity`, `publication_date`) VALUES
+ ('Book 1', 'Author 1', 'Genre 1', 'ISBN123456', 'Description of Book 1', 10, '2022-01-15'),
+ ('Book 2', 'Author 2', 'Genre 2', 'ISBN234567', 'Description of Book 2', 15, '2022-02-20'),
+ ('Book 3', 'Author 3', 'Genre 3', 'ISBN345678', 'Description of Book 3', 8, '2022-03-25'),
+ ('Book 4', 'Author 1', 'Genre 4', 'ISBN456789', 'Description of Book 4', 20, '2022-04-10'),
+ ('Book 5', 'Author 1', 'Genre 1', 'ISBN101112', 'Description of Book 5', 20, '2022-05-05'),
+ ('Book 6', 'Author 1', 'Genre 1', 'ISBN789012', 'Description of Book 6', 15, '2022-06-15'),
+ ('Book 7', 'Author 2', 'Genre 2', 'ISBN890123', 'Description of Book 7', 12, '2022-07-20'),
+ ('Book 8', 'Author 2', 'Genre 2', 'ISBN901234', 'Description of Book 8', 18, '2022-08-25'),
+ ('Book 9', 'Author 2', 'Genre 2', 'ISBN012345', 'Description of Book 9', 25, '2022-09-10'),
+ ('Book 10', 'Author 3', 'Genre 3', 'ISBN123456', 'Description of Book 10', 10, '2022-10-05');
 
 -- --------------------------------------------------------
 
@@ -62,12 +62,12 @@ INSERT INTO `books` (`title`, `author`, `genre`, `ISBN`, `description`, `quantit
 --
 
 CREATE TABLE `book_transactions` (
-  `transactionID` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `userID` int(11) NOT NULL,
-  `bookID` int(11) NOT NULL,
-  `inQuantity` int(11) NOT NULL,
-  `outQuantity` int(11) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+   `transactionID` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   `userID` int(11) NOT NULL,
+   `bookID` int(11) NOT NULL,
+   `inQuantity` int(11) NOT NULL,
+   `outQuantity` int(11) NOT NULL,
+   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -94,15 +94,15 @@ INSERT INTO `book_transactions` (`userID`, `bookID`, `inQuantity`, `outQuantity`
 --
 
 CREATE TABLE `users` (
-  `userID` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `fullname` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `userID` int (11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `fullname` varchar (255) NOT NULL,
+  `email` varchar (255) NOT NULL,
+  `password` varchar (255) NOT NULL,
   `role` enum('Admin','Client','Librarian') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+--   Dumping data for table `users`
 --
 
 INSERT INTO `users` (`fullname`, `email`, `password`, `role`) VALUES
