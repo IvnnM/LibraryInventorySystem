@@ -1,7 +1,7 @@
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
---
+--           
 -- Host: 127.0.0.1
 -- Generation Time: Oct 23, 2023 at 01:41 PM
 -- Server version: 10.4.28-MariaDB
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `books` (
-  `bookID` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `bookID` int                (11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `title` varchar(255) NOT NULL,
   `author` varchar(255) NOT NULL,
   `genre` varchar(255) NOT NULL,
